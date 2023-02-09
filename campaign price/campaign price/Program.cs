@@ -1,4 +1,4 @@
-﻿namespace campaign_price
+namespace campaign_price
 {
     class Program
     {
@@ -59,7 +59,7 @@
 
                     if(antal_p <= antal_second_key) //
                     {
-                        if (antal_p % 2 == 0)
+                        if (antal_p % 2 == 0 || antal_p == 1)
                         {
                             ProductsToBuyList[p.Key] = ProductsToBuyList[p.Key] - antal_p;
                             ProductsToBuyList[second_key] = ProductsToBuyList[second_key] - antal_p;
@@ -74,7 +74,7 @@
                     }
                     else
                     {
-                        if (antal_second_key % 2 == 0)
+                        if (antal_second_key % 2 == 0 || antal_second_key == 1)
                         {
                             ProductsToBuyList[p.Key] = ProductsToBuyList[p.Key] - antal_second_key;
                             ProductsToBuyList[second_key] = ProductsToBuyList[second_key] - antal_second_key;
@@ -104,7 +104,7 @@
                     var product = products.Find(x => x.Id == p.Key);
                     if (product.IsOnVolumeSale)
                     {
-                        if (p.Value >= product.VolumeAmount)
+                        if (ProductsToBuyList[p.Key] >= product.VolumeAmount)
                         {
                             ProductsToBuyList[p.Key] = ProductsToBuyList[p.Key] - product.VolumeAmount;
                             to_pay += product.VolumePrice;
